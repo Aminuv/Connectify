@@ -27,3 +27,23 @@ export const register = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+
+// Login user
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email : email });
+        !user && res.status(400).json("Wrong credentials!");
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        !isMatch && res.status(400).json("Wrong credentials!");
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        delete user.password;
+        res.status(200).json({ token, user });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
