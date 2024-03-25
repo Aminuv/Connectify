@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import authRoutes from './routes/auth.js';
 import { register } from './controllers/auth.js';
 
 /* CONFIGURATION */
@@ -35,9 +36,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-/* ROUTES */
+/* ROUTES WITH FILE STORAGE */
 app.post('/auth/register', upload.single('picture'), register);
 
+/* ROUTES */
+app.use('/auth', authRoutes);
 
 /* MONGODB CONNECTION */
 const PORT = process.env.PORT || 6000;
