@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Read  posts from the database and send them to the client
 router.get('/', verifyToken, getFeedPosts);
-router.get('/:userId', verifyToken, getUserPosts);
+router.get('/:userId/posts', verifyToken, getUserPosts);
 
 // Update a post with like 
 router.patch('/:id/like', verifyToken, likePost);

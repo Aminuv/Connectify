@@ -27,10 +27,10 @@ export const createPost = async (req, res) => {
 }
 
 // get all posts from the database
-export const getPosts = async (req, res) => {
+export const getFeedPosts = async (req, res) => {
     try {
-        const post = await post.find();
-        res.status(200).json(post);
+        const posts = await post.find();
+        res.status(200).json(posts);
     } catch (err) {
         res.status(404).json({ message: err.message });
     }
