@@ -62,11 +62,9 @@ mongoose.connect(process.env.MONGO_URI, {
         console.log(`Server is running on PORT: ${PORT}`);
 
         // Seed data
-        //User.insertMany(users);
-        //Post.insertMany(posts);
+        // User.insertMany(users);
+        // Post.insertMany(posts);
     });
 }).catch((error) => {
     console.log(`${error} did not connect`);
 });
-
-
